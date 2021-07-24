@@ -15,3 +15,6 @@ yarn install
 ```bash
 yarn start:dev
 ```
+
+## Contact
+sonofhuman20@gmail.com, `InseobJeon`!

@@ -62,7 +62,6 @@ export class LocationsService {
   async createLocationWithCoordinates(
     coordinates: ParseToHumanReadableLocationDto,
   ): Promise<Location> {
-    console.log(coordinates);
     const locationProperties = await this.parseToHumanReadableLocation(
       coordinates,
     );

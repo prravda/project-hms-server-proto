@@ -8,6 +8,7 @@ import {
 import { BaseOptions } from './base-options.entity';
 import { Machine } from './machine.entity';
 
+// TODO: 지역을 어떻게 unique 하게 구분할 것인가.
 @Entity()
 export class Location extends BaseOptions {
   @PrimaryGeneratedColumn()

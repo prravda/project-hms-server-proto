@@ -1,4 +1,5 @@
 import {
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -15,7 +16,13 @@ export class Machine extends BaseOptions {
   @PrimaryGeneratedColumn()
   machineId: number;
 
-  @ManyToOne(() => Location, (location) => location.machines)
+  @Column({
+    type: 'varchar',
+    nullable: true,
+  })
+  machineUUID: string;
+
+  @ManyToOne(() => Location, (location) => location.machines, { cascade: true })
   @JoinColumn({
     name: 'locationId',
   })
