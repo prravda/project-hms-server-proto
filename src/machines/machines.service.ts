@@ -64,27 +64,40 @@ export class MachinesService {
   async createCheckLogOnMachine(
     createCheckLogOnMachineDto: CreateCheckLogOnMachineDto,
   ) {
-    const { ss, ...createMachineDto } = createCheckLogOnMachineDto;
-    const machine = await this.findOrCreateMachine(createMachineDto);
+    try {
+      const { ss, ...createMachineDto } = createCheckLogOnMachineDto;
+      const machine = await this.findOrCreateMachine(createMachineDto);
 
-    const checkLog = this.checkLogService.createCheckLog({ ss });
-    checkLog.machine = machine;
-    await this.checkLogService.saveCheckLog(checkLog);
+      const checkLog = this.checkLogService.createCheckLog({ ss });
+      checkLog.machine = machine;
+      await this.checkLogService.saveCheckLog(checkLog);
 
-    await this.machineRepository.save<Machine>(machine);
+      await this.machineRepository.save<Machine>(machine);
+    } catch (e) {
+      Error.captureStackTrace(e);
+      throw e;
+    }
   }
 
   async findMachineAndItsLog(findMachineDto: FindMachineDto) {
-    const { machineUUID } = findMachineDto;
-    return this.machineRepository.findOne({
-      where: { machineUUID },
-      relations: ['checkLogs', 'location'],
-    });
+    try {
+      const { machineUUID } = findMachineDto;
+      return this.machineRepository.findOne({
+        where: { machineUUID },
+        relations: ['checkLogs', 'location'],
+      });
+    } catch (e) {
+      throw e;
+    }
   }
 
   async findAllMachineAndItsLog() {
-    return await this.machineRepository.find({
-      relations: ['checkLogs', 'location'],
-    });
+    try {
+      return await this.machineRepository.find({
+        relations: ['checkLogs', 'location'],
+      });
+    } catch (e) {
+      throw e;
+    }
   }
 }

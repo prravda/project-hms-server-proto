@@ -10,12 +10,15 @@ import { BaseOptions } from './base-options.entity';
 import { Location } from './location.entity';
 import { CheckLog } from './check-log.entity';
 import { Memo } from './memo.entity';
+import { IsNumber, IsString } from 'class-validator';
 
 @Entity()
 export class Machine extends BaseOptions {
+  @IsNumber()
   @PrimaryGeneratedColumn()
   machineId: number;
 
+  @IsString()
   @Column({
     type: 'varchar',
     nullable: true,

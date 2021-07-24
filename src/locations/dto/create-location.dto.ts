@@ -13,3 +13,5 @@ export class CreateLocationDto extends IntersectionType(
   camelCaseRoadAddress,
   PickType(Location, ['longitude', 'latitude'] as const),
 ) {}
+
+export type camelCaseNormalAddress = camelCaseRoadAddress;
