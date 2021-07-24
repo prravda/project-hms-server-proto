@@ -22,7 +22,7 @@ import mqttConfig from './config/mqtt.config';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (config: ConfigService) => config.get('database.local'),
+      useFactory: async (config: ConfigService) => config.get('database'),
     }),
     MachinesModule,
     LocationsModule,
