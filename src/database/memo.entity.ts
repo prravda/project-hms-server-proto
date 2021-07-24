@@ -12,6 +12,6 @@ export class Memo extends BaseOptions {
   })
   textContents: number;
 
-  @ManyToOne(() => Machine, (machine) => machine.memos)
+  @ManyToOne(() => Machine, (machine) => machine.memos, { cascade: true })
   machine: Machine;
 }

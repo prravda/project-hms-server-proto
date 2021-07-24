@@ -6,7 +6,6 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { BaseOptions } from './base-options.entity';
-import { OmitType } from '@nestjs/mapped-types';
 import { Machine } from './machine.entity';
 
 @Entity()
@@ -19,7 +18,7 @@ export class CheckLog extends BaseOptions {
   })
   ss: number;
 
-  @ManyToOne(() => Machine, (machine) => machine.checkLogs)
+  @ManyToOne(() => Machine, (machine) => machine.checkLogs, { cascade: true })
   @JoinColumn({
     name: 'machineId',
   })

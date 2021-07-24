@@ -1,13 +1,30 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { MachinesService } from './machines.service';
-import { ParseToHumanReadableLocationDto } from '../locations/dto/parse-to-human-readable-location.dto';
+import { CreateCheckLogOnMachineDto } from './dto/create-check-log-on-machine.dto';
+import { FindMachineDto } from './dto/find-machine.dto';
 
 @Controller('machines')
 export class MachinesController {
   constructor(private readonly machinesService: MachinesService) {}
 
-  @Post()
-  async createMachine(@Body() coordinates: ParseToHumanReadableLocationDto) {
-    return await this.machinesService.createMachine(coordinates);
+  @Post('/log')
+  async createCheckLogOnMachine(
+    @Body() createCheckLogOnMachineDto: CreateCheckLogOnMachineDto,
+  ) {
+    try {
+      return await this.machinesService.createCheckLogOnMachine(
+        createCheckLogOnMachineDto,
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @Get('/log')
+  async findMachineAndItsLog(@Query() findMachineDto: FindMachineDto) {
+    if (!findMachineDto.machineUUID) {
+      return await this.machinesService.findAllMachineAndItsLog();
+    }
+    return await this.machinesService.findMachineAndItsLog(findMachineDto);
   }
 }
