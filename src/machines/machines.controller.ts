@@ -12,6 +12,7 @@ export class MachinesController {
     @Body() createCheckLogOnMachineDto: CreateCheckLogOnMachineDto,
   ) {
     try {
+      console.log(createCheckLogOnMachineDto);
       return await this.machinesService.createCheckLogOnMachine(
         createCheckLogOnMachineDto,
       );

@@ -12,11 +12,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import databaseConfig from './config/database.config';
 import kakaoConfig from './config/kakao.config';
 import mqttConfig from './config/mqtt.config';
-import { LoggerModule } from 'nestjs-pino';
 
 @Module({
   imports: [
-    LoggerModule.forRoot({}),
     ConfigModule.forRoot({
       load: [databaseConfig, kakaoConfig, mqttConfig],
       isGlobal: true,
