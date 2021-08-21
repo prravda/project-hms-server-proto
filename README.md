@@ -17,4 +17,4 @@ yarn start:dev
 ```
 
 ## Contact
-sonofhuman20@gmail.com, `InseobJeon`!
+sonofhuman20@gmail.com, `InseobJeon`
