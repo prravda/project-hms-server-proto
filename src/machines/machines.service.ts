@@ -38,7 +38,10 @@ export class MachinesService {
   ): Promise<Machine> {
     try {
       const { machineUUID } = findMachineDto;
-      return await this.machineRepository.findOne({ where: { machineUUID } });
+      return await this.machineRepository.findOne({
+        where: { machineUUID },
+        ...options,
+      });
     } catch (e) {
       Error.captureStackTrace(e);
       throw e;
