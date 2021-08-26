@@ -48,7 +48,6 @@ export class LocationsService {
                 document.road_address,
               );
             }
-
             if (document.address) {
               return this.parseSnakeNormalAddressToCamelCase(document.address);
             }
@@ -56,6 +55,7 @@ export class LocationsService {
         )
         .pipe(
           catchError((err) => {
+            console.error(err);
             throw new BadRequestException({
               statusCode: HttpStatus.BAD_REQUEST,
               message:
