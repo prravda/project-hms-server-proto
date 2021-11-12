@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { injectable } from '@nestjs/common';
 
-@Injectable()
-export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+@injectable()
+export class appservice {
+  gethello(): string {
+    return 'hello world!';
   }
 }
