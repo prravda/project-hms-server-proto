@@ -1,5 +1,4 @@
 import { registerAs } from '@nestjs/config';
-import { ConnectionOptions } from 'typeorm';
 import { Machine } from '../database/machine.entity';
 import { Memo } from '../database/memo.entity';
 import { CheckLog } from '../database/check-log.entity';
@@ -24,7 +23,7 @@ export default registerAs('database', () => {
     case 'local':
       return {
         type: 'mysql',
-        database: String(process.env.DATABASE_DEV_NAME),
+        database: String(process.env.DATABASE_LOCAL_NAME),
         port: 3306,
         username: process.env.DATABASE_LOCAL_USER,
         password: process.env.DATABASE_LOCAL_PASSWORD,
